@@ -10,7 +10,8 @@ const Schema = mongoose.Schema;
 
 const moveSchema = new Schema({
   word: { type: String, required: true },
-  position: { type: String, required: true },
+  startPosition: { type: String, required: true },
+  positions: { type: Array },
   playerId: { type: Schema.Types.ObjectId, ref: 'user' },
   createdAt: { type: Date, 'default': Date.now },
   updatedAt: { type: Date, 'default': Date.now }
