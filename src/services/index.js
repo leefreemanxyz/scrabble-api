@@ -1,4 +1,5 @@
 'use strict';
+const move = require('./move');
 const game = require('./game');
 const message = require('./message');
 const authentication = require('./authentication');
@@ -14,4 +15,5 @@ module.exports = function() {
   app.configure(user);
   app.configure(message);
   app.configure(game);
+  app.configure(move);
 };

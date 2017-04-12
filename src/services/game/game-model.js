@@ -11,6 +11,8 @@ const Schema = mongoose.Schema;
 const gameSchema = new Schema({
   title: { type: String, required: true },
   playerIds: [Schema.Types.ObjectId],
+  usableTiles: { type: Array, required: true },
+  playerTiles: { type: Array, required: true },
   createdAt: { type: Date, 'default': Date.now },
   updatedAt: { type: Date, 'default': Date.now }
 });
