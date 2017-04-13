@@ -1,27 +1,32 @@
 'use strict';
 
 const defaults = {};
-const fs = require("fs");
+const axios = require('axios')
+const dictionaryURL = 'http://api.pearson.com/v2/dictionaries/ldoce5/entries?headword='
+const errors = require('feathers-errors')
+
+
 
 module.exports = function(options) {
   options = Object.assign({}, defaults, options);
 
   return function(hook) {
-    const word = hook.data.word
-    console.log(hook.data)
-    console.log(`current word: ${word}`)
-    //return hook.data = Object.assign({}, hook.data, {validWord: true})
-    //
-    // const dictionary = fs.readFile('/usr/share/dict/words', 'utf8', function(err, data) {
-    //   if (err) throw err;
-    //   let newArray = data.split('\n');
-    //   fs.writeFile('../dictionary.js', newArray, function(err) {
-    //     if (err) throw err;
-    //     newArray.forEach(function(v) { return (v.join(', ') + '\n') });
-    //     console.log('done')
-    //   })
-    // });
+    let isWord = false;
 
-    // let newArray = dictionaryArray.filter((dictionaryWord) => (dictionaryWord.toUpperCase() === word.toUpperCase()))
+    return axios.get(`${dictionaryURL}${hook.data.word}`)
+    .then((response) => {
+
+      isWord = response.data.count > 0
+      if(isWord){
+        return hook
+      } else {
+        console.log(`dictionarycheck failed`)
+        throw new errors.Forbidden(`Sorry, ${hook.data.word} is not a dictionary word. Please try again`)
+      }
+      })
+    .catch((error) => {
+      console.log('error being called')
+      throw error
+    })
   };
-};
+  };

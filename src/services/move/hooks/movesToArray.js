@@ -20,16 +20,16 @@ module.exports = function(options) {
       //console.log(hook.params.query.gameId)
       //console.log(hook.result.gameId)
       let gameId = (hook.result.gameId || hook.params.query.gameId)
-      console.log(gameId)
+      //console.log(gameId)
 
 
-      console.log('logging params')
-      console.log(hook)
+      //console.log('logging params')
+      //console.log(hook)
       return hook.app.service('moves')
               .find({query: {gameId: gameId}})
               .then((moves) => {
-                console.log(hook)
-                console.log(moves)
+                //console.log(hook)
+                //console.log(moves)
                 let movesArray = moves.data.map((move) => {
                   return [move.word, move.startPosition]
                 })

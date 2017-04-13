@@ -1,6 +1,5 @@
 'use strict';
 
-
 const movesToArray = require('./movesToArray');
 
 const isValidMove = require('./isValidMove');
@@ -20,9 +19,9 @@ exports.before = {
   ],
   find: [],
   get: [],
-  create: [isValidWord(),
-    //isValidMove()
-  ],
+  create: [//isValidMove()
+   isValidWord(),
+],
   update: [],
   patch: [],
   remove: []
