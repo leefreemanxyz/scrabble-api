@@ -1,3 +1,3 @@
-module.exports = (move) => {
-  return Number.isInteger(parseInt(move))
+module.exports = (startPosition) => {
+  return Number.isInteger(parseInt(startPosition))
 }
