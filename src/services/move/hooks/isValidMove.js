@@ -11,6 +11,12 @@ module.exports = function(options) {
 
   return function(hook) {
     const movePositions = getMovePositions(hook.data)
+    console.log(hook.data)
+    hook.data.positions = movePositions.map((move)=>{
+      return [move.x, move.y]
+    })
+    console.log('logging positions')
+    console.log(hook.data.positions)
     const adjacentPositions = getAdjacentPositions(movePositions, hook.data.startPosition)
 
     return hook.app.service('moves').find().then(movesQuery => {
