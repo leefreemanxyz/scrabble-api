@@ -21,15 +21,15 @@ const emptyResult = [
 const removeBrackets = require('./removeBrackets')
 
 module.exports = (moves) => {
-  console.log(moves)
-  console.log('empty result')
-  console.log(emptyResult)
+  //console.log(moves)
+  //console.log('empty result')
+  //console.log(emptyResult)
   const result =  emptyResult.map(function(arr) {
     return arr.slice();
 });
 
-  console.log('result')
-  console.log(result)
+  //console.log('result')
+  //console.log(result)
   moves.map((move) => {
     if(isHorizontal(move[1])){
        move[0] = removeBrackets(move[0])
@@ -51,7 +51,7 @@ module.exports = (moves) => {
       })
     }
   })
-  console.log('endresult')
-  console.log(result)
+  //console.log('endresult')
+  //console.log(result)
   return result
 }
