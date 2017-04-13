@@ -20,7 +20,9 @@ exports.before = {
   ],
   find: [],
   get: [],
-  create: [isValidWord(), isValidMove()],
+  create: [isValidWord(),
+    //isValidMove()
+  ],
   update: [],
   patch: [],
   remove: []
