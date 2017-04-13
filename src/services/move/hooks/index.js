@@ -1,5 +1,7 @@
 'use strict';
 
+const movesToArray = require('./movesToArray');
+
 const isValidWord = require('./isValidWord');
 
 const globalHooks = require('../../../hooks');
@@ -21,7 +23,7 @@ exports.before = {
 };
 
 exports.after = {
-  all: [],
+  all: [movesToArray()],
   find: [],
   get: [],
   create: [],
