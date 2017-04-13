@@ -8,7 +8,9 @@ module.exports = function(options) {
 
   return function(hook) {
     const word = hook.data.word
-    // console.log(`current word: ${word}`)
+    console.log(hook.data)
+    console.log(`current word: ${word}`)
+    //return hook.data = Object.assign({}, hook.data, {validWord: true})
     //
     // const dictionary = fs.readFile('/usr/share/dict/words', 'utf8', function(err, data) {
     //   if (err) throw err;
