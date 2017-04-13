@@ -1,14 +1,18 @@
 'use strict';
 
+const errors = require('feathers-errors')
+const getAdjacentPositions = require('../adjacentPositions');
+const getMovePositions = require('../movePositions');
 const matchingPositions = require('../matchingPositions');
-const adjacentPositions = [[6,1],[8,1],[6,2],[8,2],[6,3],[8,3],[7,4],[7,1],[7,2],[7,3]]
-
 const defaults = {};
 
 module.exports = function(options) {
   options = Object.assign({}, defaults, options);
 
   return function(hook) {
+    const movePositions = getMovePositions(hook.data)
+    const adjacentPositions = getAdjacentPositions(movePositions, hook.data.startPosition)
+
     return hook.app.service('moves').find().then(movesQuery => {
       const moves = movesQuery.data
 
@@ -16,7 +20,10 @@ module.exports = function(options) {
         if (matchingPositions(adjacentPositions, move.positions).length > 0) return [].concat(move)
       })
 
-      console.log(`adjacent words: ${adjacentMoves.length}`)
+      if(moves.length > 0 && adjacentMoves < 1){
+        throw new errors.Forbidden('Bad move!')
+      }
+
       return hook;
     });
   };
