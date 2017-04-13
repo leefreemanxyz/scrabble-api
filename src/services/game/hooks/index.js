@@ -1,7 +1,5 @@
 'use strict';
 
-const movesToArray = require('./moves-to-array');
-
 const firstEncounter = require('./firstEncounter');
 
 const isGameFull = require('./isGameFull');
@@ -30,7 +28,7 @@ exports.before = {
 };
 
 exports.after = {
-  all: [populatePlayers, isGameFull(), firstEncounter(), movesToArray()],
+  all: [populatePlayers, isGameFull(), firstEncounter()],
   find: [],
   get: [],
   create: [],

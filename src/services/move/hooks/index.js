@@ -1,5 +1,7 @@
 'use strict';
 
+const isValidMove = require('./isValidMove');
+
 const isValidWord = require('./isValidWord');
 
 const globalHooks = require('../../../hooks');
@@ -14,7 +16,7 @@ exports.before = {
   ],
   find: [],
   get: [],
-  create: [isValidWord()],
+  create: [isValidWord(), isValidMove()],
   update: [],
   patch: [],
   remove: []
