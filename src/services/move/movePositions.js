@@ -7,8 +7,8 @@ module.exports = (move) => {
     let moveCoordinates = []
     move.word = removeBrackets(move.word)
     if(isHorizontal(move.startPosition)){
-      let x = parseInt(move.startPosition[0]) - 1
-      let y = alphabet.indexOf(move.startPosition[1])
+      let x = alphabet.indexOf(move.startPosition[1])
+      let y = parseInt(move.startPosition[0]) - 1
       Array.prototype.map.call(move.word, (letter, index) => {
         moveCoordinates.push({'x': x+index,
                                'y':y,
@@ -16,8 +16,8 @@ module.exports = (move) => {
                              })
         })
     } else {
-      let x = parseInt(move.startPosition[1]) - 1 
-      let y = alphabet.indexOf(move.startPosition[0])
+      let x = alphabet.indexOf(move.startPosition[0])
+      let y = parseInt(move.startPosition[1]) - 1
       Array.prototype.map.call(move.word, (letter, index) => {
         moveCoordinates.push({'x': x,
                                'y':y+index,

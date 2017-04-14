@@ -10,24 +10,27 @@ module.exports = function(options) {
   options = Object.assign({}, defaults, options);
 
   return function(hook) {
+    let gameId = hook.data.gameId
+
     const movePositions = getMovePositions(hook.data)
-    console.log(hook.data)
     hook.data.positions = movePositions.map((move)=>{
       return [move.x, move.y]
     })
-    console.log('logging positions')
-    console.log(hook.data.positions)
+
     const adjacentPositions = getAdjacentPositions(movePositions, hook.data.startPosition)
 
-    return hook.app.service('moves').find().then(movesQuery => {
+    return hook.app.service('moves')
+    .find({query: {gameId: gameId}})
+    .then(movesQuery => {
       const moves = movesQuery.data
 
       const adjacentMoves = moves.filter((move) => {
         if (matchingPositions(adjacentPositions, move.positions).length > 0) return [].concat(move)
       })
+      console.log(adjacentMoves)
 
       if(moves.length > 0 && adjacentMoves < 1){
-        throw new errors.Forbidden('Bad move!')
+        throw new errors.Forbidden('You cannot put a word there, please try again')
       }
 
       return hook;
