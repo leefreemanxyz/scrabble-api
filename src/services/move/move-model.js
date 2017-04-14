@@ -11,7 +11,7 @@ const Schema = mongoose.Schema;
 const moveSchema = new Schema({
   gameId: { type: Schema.Types.ObjectId },
   word: { type: String, required: true },
-  startPosition: { type: String, required: true },
+  startPosition: { type: Array, required: true },
   positions: { type: Array },
   playerId: { type: Schema.Types.ObjectId, ref: 'user' },
   createdAt: { type: Date, 'default': Date.now },
